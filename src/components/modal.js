@@ -12,7 +12,6 @@ function closePopup(popup){
 function closeEsc(evt){ 
     if (evt.key === 'Escape') { 
         closePopup(document.querySelector('.popup_is-opened'));
-        console.log("Сработал") 
     } 
 
 }

@@ -131,8 +131,6 @@ function cardFormSubmit(evt) {
     postNewCard(namePlace.value, linkUrl.value)
         .then((cards) => {
             const newCard = creatCard(cards, profileId, deleteCard, likeCard, openImageClick);
-            console.log(cards._id);
-            console.log(profileId);
             placesList.prepend(newCard);
             closePopup(addPopup);
             cardForm.reset();

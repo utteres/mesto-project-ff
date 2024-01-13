@@ -53,7 +53,7 @@ function likeCard(cardData, profileId, cardItem) {
               cardData.likes = res.likes;
           })
           .catch((error) => {
-              console.error("doh", error);
+              console.error("ошибка", error);
           });
   } else {
       addLikeCard(cardData._id)
@@ -63,7 +63,7 @@ function likeCard(cardData, profileId, cardItem) {
               cardData.likes = res.likes;
           })
           .catch((error) => {
-              console.log("auch", error);
+              console.log("ошибка", error);
           });
   }
 }
