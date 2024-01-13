@@ -100,9 +100,9 @@ function deleteCard(card, cardId) {
 
 profileEditButton.addEventListener("click", function() {
     openPopup(editPopup);
+    clearValidation(profileForm, validationConfig);
     inputName.value = profileTitleName.textContent;
     inputJob.value = profileTitleJob.textContent;
-    clearValidation(profileForm, validationConfig);
 });
 
 profileAddButton.addEventListener("click", function() {
