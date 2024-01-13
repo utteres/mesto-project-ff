@@ -10,7 +10,6 @@ import {
 } from "./components/card.js";
 import {
     enableValidation,
-    validationConfig,
     clearValidation,
 } from "./components/validation";
 import {
@@ -22,6 +21,7 @@ import {
     removeCard,
     avatarUpdate,
 } from "./components/api.js";
+
 
 const placesList = document.querySelector(".places__list");
 const popups = document.querySelectorAll(".popup");
@@ -55,6 +55,14 @@ const popupAvatarForm = document.querySelector('.popup__form[name="avatar-change
 const popupAvatarLinkInput = popupAvatarForm.querySelector(".popup__input_type_url");
 
 export let profileId = "";
+export const validationConfig = {
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__button",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible",
+  };
 
 
 Promise.all([getCard(), getProfile()])
@@ -120,7 +128,6 @@ function profileFormSubmit(evt) {
         })
         .catch((error) => console.log("не загрузились данные профиля ошибка:", error))
         .finally(() => (profileEditSave.textContent = btnText));
-    clearValidation(profileForm, validationConfig);
     closePopup(editPopup);
 }
 // новая карточка
@@ -137,7 +144,6 @@ function cardFormSubmit(evt) {
         })
         .catch((error) => console.log("данные карточки не ошибка", error))
         .finally(() => (newCardSave.textContent = btnText));
-    clearValidation(cardForm, validationConfig);
 }
 // обновление аватарки
 function changeAvatarFormSubmit(evt) {
@@ -151,7 +157,6 @@ function changeAvatarFormSubmit(evt) {
         })
         .catch((error) => console.log("Аватарка не загрузилась ошибка", error))
         .finally(() => (popupAvatarButton.textContent = BtnText));
-    clearValidation(popupAvatarForm, validationConfig);
 }
 
 

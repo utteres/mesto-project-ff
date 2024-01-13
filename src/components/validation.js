@@ -1,13 +1,4 @@
-//index
-const validationConfig = {
-    formSelector: ".popup__form",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__button",
-    inactiveButtonClass: "popup__button_disabled",
-    inputErrorClass: "popup__input_type_error",
-    errorClass: "popup__error_visible",
-  };
-  //передать enableValidation
+import {validationConfig} from '../index'
   
   //создание и удаление классов и содержания ошибок
   const showInputError = (
@@ -97,16 +88,17 @@ const validationConfig = {
     }
   };
   //очистка классов ошибок
-  function clearValidation(profileForm, validationConfig) {
-    const buttonElement = profileForm.querySelector(
+  function clearValidation(formElement, validationConfig) {
+    const buttonElement = formElement.querySelector(
       validationConfig.submitButtonSelector
     );
     const inputList = Array.from(
-      profileForm.querySelectorAll(validationConfig.inputSelector)
+      formElement.querySelectorAll(validationConfig.inputSelector)
     );
     inputList.forEach((inputElement) => {
-      hideInputError(profileForm, inputElement, validationConfig);
+      hideInputError(formElement, inputElement, validationConfig);
     });
+    formElement.reset()
     toggleButtonState(inputList, buttonElement, validationConfig);
   }
   

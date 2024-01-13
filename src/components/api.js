@@ -50,9 +50,7 @@ const removeCard = (cardId)=> fetch(`${config.baseUrl}/cards/${cardId}`, {
 
 const addLikeCard = (cardId) => fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
   method: "PUT",
-  headers: {
-    authorization: 'a90afcbc-8c1a-4f4b-b18e-3fd143504f86',
-  },
+  headers: config.headers,  
 })
 .then((res) => testData(res));
 

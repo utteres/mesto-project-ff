@@ -35,38 +35,27 @@ function creatCard(cardData, profileId, deleteFunction, likeFunction, imgFunctio
   cardImg.addEventListener('click', imgFunction);
 
   like.addEventListener("click", () => {
-      likeFunction(cardData, profileId, card);
+      likeFunction(cardData,  card);
   });
   return card;
 }
 
 
 // @todo: Функция лайка карточки
-function likeCard(cardData, profileId, cardItem) {
+function likeCard(cardData, cardItem) {
   const likeBtn = cardItem.querySelector(".card__like-button");
   const likeCounter = cardItem.querySelector(".like_counter");
-  if (isLikeMine(cardData, profileId)) {
-      deletLikeCard(cardData._id)
-          .then((res) => {
-              likeCounter.textContent = res.likes.length;
-              likeBtn.classList.remove("card__like-button_is-active");
-              cardData.likes = res.likes;
-          })
-          .catch((error) => {
-              console.error("ошибка", error);
-          });
-  } else {
-      addLikeCard(cardData._id)
-          .then((res) => {
-              likeCounter.textContent = res.likes.length;
-              likeBtn.classList.add("card__like-button_is-active");
-              cardData.likes = res.likes;
-          })
-          .catch((error) => {
-              console.log("ошибка", error);
-          });
-  }
-}
+  const isLiked = likeBtn.classList.contains('card__like-button_is-active')
+  const likeMethod = isLiked ? deletLikeCard : addLikeCard;
+  console.log(likeMethod)
+        likeMethod(cardData._id) 
+        .then((res) => {
+           likeCounter.textContent = res.likes.length; 
+           likeBtn.classList.toggle("card__like-button_is-active"); 
+        })
+        .catch(err => console.log(err));
+  } 
+
 
 function isLikeMine(cardData, profileId) {
   return cardData.likes.some((item) => item._id === profileId);
